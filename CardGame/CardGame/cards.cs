@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace CardGame
 {
+    // En - if a card attacks another card from the same origin (except None) it recieves 1 less damage.
+    // Pl - jeśli zaatakujesz drugą kartę tego samego pochodzenia (poza None) to otrzymasz 1 obrażeń mniej.
     public enum Origin
     {
         None,
@@ -15,6 +17,8 @@ namespace CardGame
         Monster,
         Undead
     }
+    // En - main class from which derives all other card classes. Contains all main functions
+    // Pl - główna klasa, która słuzy jako baza dla wszystkich pozostałych. Posiada wszystkie główne funkcje.
     public abstract class Card
     {
         protected int health, cost;
@@ -31,11 +35,12 @@ namespace CardGame
             this.name = name;
             this.origin = origin;
         }
+        // En - Info returns base card stats and Status gives information about an already placed card.
         public virtual void Info()
         {
             Console.WriteLine($"{name} ({cost}) - HP {health} || DMG {damage} || {origin}");
         }
-        public virtual void Status() //returns current information about the card
+        public virtual void Status()
         {
             Console.WriteLine($"{name} : HP {currentHealth}/{health}|| DMG {damage}");
         }
@@ -43,6 +48,9 @@ namespace CardGame
         {
             return $"{name} : {currentHealth}/{health} || {damage}";
         }
+        // En - main attack functionality. Most basic formula - attacker attacks and deals damage to defender.
+        // Defender recieves damage and deals damage back (lowered by 1 if from same origin)
+        // Other card types may have altered attack / defend formulas.
         protected void ChangeHealth(int dmg)
         {
             currentHealth -= dmg;
@@ -85,6 +93,8 @@ namespace CardGame
         {
             Console.WriteLine($"#TAUNT# {name} : HP {currentHealth}/{health} || DMG {damage}");
         }
+        // En - Taunt cards take priority when attacked and also take less damage from
+        // same origin attackers.
         public override void Defend(Card attacker)
         {
             if (attacker.origin == origin && origin != Origin.None)
@@ -107,10 +117,12 @@ namespace CardGame
         {
             return $"!LETHAL! {name} : HP {currentHealth}/{health} || DMG {damage}";
         }
-        public override void Status() //returns current information about the card
+        public override void Status()
         {
             Console.WriteLine($"!LETHAL! {name} : HP  {currentHealth} / {health}  || DMG {damage}");
         }
+        // En - lethal cards kill any attacked card in 1 hit
+        // This doesn't work as it defends!
         public override void Attack(Card defender)
         {
             StandardCard tmp = new StandardCard("one-shot", 1, 999, 0, Origin.None);
