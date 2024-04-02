@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace CardGame
 {
     // En - if a card attacks another card from the same origin (except None) it recieves 1 less damage.
     // Pl - jeśli zaatakujesz drugą kartę tego samego pochodzenia (poza None) to otrzymasz 1 obrażeń mniej.
+    [Serializable]
     public enum Origin
     {
         None,
@@ -19,13 +22,23 @@ namespace CardGame
     }
     // En - main class from which derives all other card classes. Contains all main functions
     // Pl - główna klasa, która słuzy jako baza dla wszystkich pozostałych. Posiada wszystkie główne funkcje.
-    public abstract class Card
+    public abstract class Card : ICloneable
     {
         protected int health, cost;
         public int currentHealth { get; private set; }
         public int damage { get; private set; }
         public string name { get; private set; }
         public Origin origin { get; private set; }
+        public Card(Card copy)
+        {
+            health = copy.health;
+            currentHealth = health;
+            damage = copy.damage;
+            name = copy.name;
+            cost = copy.cost;
+            origin = copy.origin;
+
+        }
         public Card(string name, int health, int damage, int cost, Origin origin)
         {
             this.health = health;
@@ -36,6 +49,10 @@ namespace CardGame
             this.origin = origin;
         }
         // En - Info returns base card stats and Status gives information about an already placed card.
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
         public virtual void Info()
         {
             Console.WriteLine($"{name} ({cost}) - HP {health} || DMG {damage} || {origin}");
@@ -133,5 +150,33 @@ namespace CardGame
             }
             else { ChangeHealth(defender.damage); }
         }
+    }
+    public class RangedCard : Card
+    {
+        public RangedCard(string name, int health, int damage, int cost, Origin origin) : base(name, health, damage, cost, origin)
+        {
+        }
+        public override void Info()
+        {
+            Console.WriteLine($"{name} ({cost}) : HP {health} || DMG {damage} || {origin} || <<RANGED>>");
+        }
+        public override string StatusString()
+        {
+            return $"/Ranged\\ {name} : HP {currentHealth}/{health} || DMG {damage}";
+        }
+        public override void Status()
+        {
+            Console.WriteLine($"/ranged\\ {name} : HP  {currentHealth} / {health}  || DMG {damage}");
+        }
+        public override void Defend(Card attacker)
+        {
+            if (attacker.origin == origin && origin != Origin.None)
+            {
+                ChangeHealth(attacker.damage - 1);
+            }
+            else { ChangeHealth(attacker.damage); }
+        }
+        // En - ranged cards can skip over taunts and doesn't take damage when attacking.
+        // Balance this out with low health or high cost!
     }
 }

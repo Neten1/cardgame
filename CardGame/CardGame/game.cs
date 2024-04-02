@@ -16,6 +16,30 @@ namespace CardGame
             this.p2 = p2;
             round = 0;
         }
+        public static void StartGame()
+        {
+            Console.Clear();
+            Console.WriteLine("$$$ STARTING GAME $$$");
+            Console.WriteLine("Player 1 name :");
+            string name1 = Console.ReadLine();
+            Console.WriteLine("Player 2 name :");
+            string name2 = Console.ReadLine();
+            Console.WriteLine("Choose your decks");
+            for(int i = 0; i < Menu.Decks.Count; i++)
+            {
+                Console.WriteLine($"{i+1}: {Menu.Decks[i].Name}");
+            }
+            Console.WriteLine($"{name1} choose your deck :");
+            player player1 = new player(name1, Menu.Decks[Int32.Parse(Console.ReadLine())-1].GetDeck());
+            Console.WriteLine($"{name2} choose your deck :");
+            player player2 = new player(name2, Menu.Decks[Int32.Parse(Console.ReadLine())-1].GetDeck());
+            game game = new game(player1, player2);
+            Console.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                game.Round();
+            }
+        }
         public void Round()
         {
             Console.WriteLine($"<<< Round {round} has starded! >>>");
@@ -41,7 +65,8 @@ namespace CardGame
                 current.AddFromDeckToBoard();
                 Console.Clear();
                 current.ShowBoard();
-                current.WhoShouldAttack().Attack(current.WhatToAttack(waiting));
+                Card attacker = current.WhoShouldAttack();
+                attacker.Attack(current.WhatToAttack(waiting, attacker));
                 Console.Clear();
             }
             current.ShowBoard();

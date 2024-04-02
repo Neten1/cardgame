@@ -1,0 +1,10 @@
+﻿=== Game Tutorial ===
+Before starting, check all available cards and decks in the decks section.
+In main menu, enter 1 to start the game.
+Follow the instructions given in console.
+
+Input player1 and player2.
+
+In each round (excluding first a.k.a start-up phase) you'll need to place 1 card and then attack with any you please.
+
+No winning condition right now.

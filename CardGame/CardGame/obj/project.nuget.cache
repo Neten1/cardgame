@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fZ9W0zBFJXr1u7yw4gdNGs88ZsodYIxk3vIujr+kTfLW9Zh6l2OevYs2Io4FtW6t8MpPx68/T9Jx83Fq039KAQ==",
+  "dgSpecHash": "JZY9hKNlNXJWPerHqbGh9KWlc+i5Oc4m7J5p1ztiFV3+kC07svpHIVwupCuPTP8MlRth15rOrC39D1h5TsUIkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tymon\\source\\repos\\CardGame\\CardGame\\CardGame.csproj",
+  "projectFilePath": "C:\\Users\\Tymon\\Desktop\\CardGame\\CardGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tymon\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512",
     "C:\\Users\\Tymon\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",

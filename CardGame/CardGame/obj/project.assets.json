@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tymon\\source\\repos\\CardGame\\CardGame\\CardGame.csproj",
+      "projectUniqueName": "C:\\Users\\Tymon\\Desktop\\CardGame\\CardGame.csproj",
       "projectName": "CardGame",
-      "projectPath": "C:\\Users\\Tymon\\source\\repos\\CardGame\\CardGame\\CardGame.csproj",
+      "projectPath": "C:\\Users\\Tymon\\Desktop\\CardGame\\CardGame.csproj",
       "packagesPath": "C:\\Users\\Tymon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tymon\\source\\repos\\CardGame\\CardGame\\obj\\",
+      "outputPath": "C:\\Users\\Tymon\\Desktop\\CardGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tymon\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -24,7 +24,7 @@ namespace CardGame
             int card_index_choice = Int32.Parse(Console.ReadLine()) - 1;
             Console.WriteLine($"Pick where should the card be placed. (1-5)");
             int card_placement_choice = Int32.Parse(Console.ReadLine()) - 1;
-            AddToBoard(deck[card_index_choice], card_placement_choice);
+            AddToBoard(deck[card_index_choice],  card_placement_choice);
         }
         private void AddToBoard(Card card, int position)
         {
@@ -68,13 +68,13 @@ namespace CardGame
                 if (i is TauntCard) return true;
             }return false;
         }
-        public Card WhatToAttack(player enemy)
+        public Card WhatToAttack(player enemy, Card type)
         {
             bool taunt = hasTaunt(enemy.board);
             Console.WriteLine("Pick who to attack (1-5)");
             for(int i = 0; i < 5; i++)
             {
-                if((taunt && enemy.board[i] is TauntCard) || (!taunt && enemy.board[i] is not null))
+                if((taunt && enemy.board[i] is TauntCard) || (!taunt && enemy.board[i] is not null) || (type.GetType() == typeof(RangedCard) && enemy.board[i] is not null))
                 {
                     Console.WriteLine($"{i+1} - {enemy.board[i].StatusString()}");
                 }
