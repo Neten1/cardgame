@@ -1,2 +1,2 @@
-#How to play this game
+# How to play this game 
 In development...
