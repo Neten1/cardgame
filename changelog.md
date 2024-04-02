@@ -13,5 +13,5 @@ Changelog
   - Edit deck and cards. Right now you can only use lists.
   - Tutorial
 - added a global deck and card list. In the future you'll be able to save and load premade cards/decks, as well as edit them on the go.
-- added proper game start - each player can choose a nickname and a deck of their liking
+- added proper game start - each player can choose a nickname and a deck of their liking  
 🟥**KNOW ISSUE** - if 2 players decide to take the same decks, due to same pointers they will behave as if they were one card
